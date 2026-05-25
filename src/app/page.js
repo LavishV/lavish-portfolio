@@ -1,318 +1,423 @@
 "use client";
+
+import { Typewriter } from "react-simple-typewriter";
+
+import {
+  Mail,
+  Download,
+  ArrowRight,
+} from "lucide-react";
+
+import { FaGithub, FaLinkedin } from "react-icons/fa";
+
+
 import { motion } from "framer-motion";
+import Image from "next/image";
+
+const handleMouseMove = (e) => {
+  const cursor = document.getElementById("cursor-glow");
+
+  cursor.style.left = `${e.clientX}px`;
+  cursor.style.top = `${e.clientY}px`;
+};
 
 export default function LavishPortfolio() {
-  const skills = [
-    "Python",
-    "C++",
-    "Django",
-    "React.js",
-    "Machine Learning",
-    "PyTorch",
-    "REST APIs",
-    "Node.js",
-    "PostgreSQL",
-    "AI & GenAI",
-  ];
-
   const projects = [
     {
-      title: "Stockify — AI Stock Prediction Platform",
-      description:
-        "A stock prediction web application using Django, React, and PyTorch LSTM models for forecasting stock prices with authentication and interactive visualizations.",
-      tags: ["Django", "React", "PyTorch", "LSTM", "AI"],
+      title: "Campus Cart",
+      desc: "Student exchange platform with CRUD operations and secure APIs.",
+      tech: ["MERN", "REST APIs"],
+      github: "https://github.com/LavishV",
     },
     {
-      title: "CIPAM Multilingual IPR Translator",
-      description:
-        "An AI-powered system designed to translate educational and legal IPR content from English into multiple Indian languages while preserving meaning and simplicity.",
-      tags: ["NLP", "Translation", "AI", "Python"],
+      title: "Stockify",
+      desc: "AI stock prediction platform using Django + PyTorch LSTM.",
+      tech: ["Django", "React", "PyTorch"],
+      github: "https://github.com/LavishV",
     },
     {
-      title: "Campus Cart Exchange Platform",
-      description:
-        "A student-focused exchange platform for buying, selling, and sharing resources inside college communities.",
-      tags: ["Web Development", "UI/UX", "React"],
+      title: "CIPAM Translator",
+      desc: "Multilingual AI translation system for legal/IPR content.",
+      tech: ["NLP", "Flask", "AI"],
+      github: "https://github.com/LavishV",
     },
   ];
 
   return (
-    <div className="min-h-screen bg-black text-white font-sans overflow-hidden relative">
-      {/* Futuristic Background */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(0,255,255,0.12),transparent_25%),radial-gradient(circle_at_bottom_left,rgba(140,0,255,0.12),transparent_25%)]" />
+    <main
+      onMouseMove={handleMouseMove}
+      className="bg-black text-white min-h-screen relative">
 
-      <div className="absolute inset-0 opacity-20 bg-[linear-gradient(rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[size:40px_40px]" />
+
+
+      <div
+        id="cursor-glow"
+        className="fixed w-56 h-56 rounded-full bg-cyan-400/15 blur-3xl pointer-events-none z-50 transition-all duration-75"
+      />
+
+      {/* Glow Background */}
+      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_top_right,rgba(0,153,255,0.12),transparent_25%)]" />
+
+
+
+      {/* Grid */}
+      <div className="absolute inset-0 pointer-events-none opacity-[0.05] bg-[linear-gradient(to_right,#ffffff12_1px,transparent_1px),linear-gradient(to_bottom,#ffffff12_1px,transparent_1px)] bg-[size:40px_40px]" />
+
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black z-0 pointer-events-none" />
 
       {/* Navbar */}
-      <nav className="sticky top-0 z-50 flex items-center justify-between px-6 md:px-10 py-5 border-b border-white/10 bg-black/70 backdrop-blur-xl">
-        <h1 className="text-2xl font-bold tracking-wide">
-          Lavish<span className="text-cyan-400">.</span>
-        </h1>
+      <nav className="fixed top-0 w-full z-50 backdrop-blur-xl border-b border-white/10 bg-black/40">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 h-20 flex items-center justify-between">
 
-        <div className="hidden md:flex items-center gap-8 text-sm text-gray-300">
-          <a href="#about" className="hover:text-white transition">
-            About
-          </a>
-          <a href="#skills" className="hover:text-white transition">
-            Skills
-          </a>
-          <a href="#projects" className="hover:text-white transition">
-            Projects
-          </a>
-          <a href="#contact" className="hover:text-white transition">
-            Contact
+          <h1 className="text-3xl font-black tracking-wider">
+            LV
+          </h1>
+
+          <div className="hidden md:flex gap-10 text-sm text-gray-300">
+            <a href="#home" className="hover:text-cyan-400 transition duration-300">Home</a>
+            <a href="#about" className="hover:text-cyan-400 transition duration-300">About</a>
+            <a href="#skills" className="hover:text-cyan-400 transition duration-300">Skills</a>
+            <a href="#projects" className="hover:text-cyan-400 transition duration-300">Projects</a>
+            <a href="#contact" className="hover:text-cyan-400 transition duration-300">Contact</a>
+          </div>
+
+          <a
+            href="/LavishVerma_resume.pdf"
+            className="border border-cyan-500/40 px-5 py-2 rounded-xl flex items-center gap-2 hover:bg-cyan-400/15 transition"
+          >
+            <Download size={18} />
+            Resume
           </a>
         </div>
       </nav>
 
-      {/* Hero Section */}
+      {/* HERO */}
+      <div className="absolute right-0 top-0 w-[650px] h-[650px] bg-cyan-500/10 blur-[150px] rounded-full pointer-events-none z-0" />
       <motion.section
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
         transition={{ duration: 0.8 }}
-        className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 md:px-16 py-24 md:py-36"
+        id="home"
+        className="relative overflow-hidden min-h-screen flex items-center px-6 md:px-14 pt-28"
       >
-        <div className="grid md:grid-cols-2 gap-16 items-center">
-          <div>
-            <p className="uppercase tracking-[0.3em] text-gray-400 text-sm mb-5">
-              AI • ML • Web Development
+
+        <div className="relative z-10 max-w-7xl mx-auto grid md:grid-cols-2 items-center gap-10 w-full">
+
+          {/* LEFT */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+          >
+            <p className="text-cyan-400 mb-4 text-lg">
+              Hello, I am
             </p>
 
-            <h1 className="text-4xl sm:text-5xl md:text-7xl font-black leading-tight mb-6 bg-gradient-to-r from-white via-cyan-200 to-cyan-500 text-transparent bg-clip-text">
-              Building intelligent systems & futuristic digital experiences.
+            <h1 className="text-5xl md:text-7xl font-black leading-tight">
+              LAVISH{" "}
+              <span className="text-cyan-400">
+                VERMA
+              </span>
             </h1>
 
-            <p className="text-gray-400 text-lg leading-relaxed max-w-xl mb-10">
-              I’m Lavish Verma — a developer exploring AI engineering, machine
-              learning, and scalable web applications while building projects
-              that solve meaningful real-world problems.
+            <div className="mt-6 text-gray-300 text-2xl font-medium">
+              <Typewriter
+                words={[
+                  "AI/ML Engineer",
+                  "Full Stack Developer",
+                  "Backend Developer",
+                  "GenAI Enthusiast",
+                  "Problem Solver",
+                ]}
+                loop={true}
+                cursor
+                cursorStyle="_"
+                typeSpeed={70}
+                deleteSpeed={40}
+                delaySpeed={1500}
+              />
+            </div>
+
+
+            <p className="mt-8 text-gray-400 max-w-xl text-lg">
+              I build scalable web applications and intelligent systems
+              that solve real-world problems.
             </p>
 
-            <div className="flex flex-wrap gap-4">
-              <motion.a
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                href="#projects"
-                className="bg-white text-black px-6 py-3 rounded-2xl font-semibold shadow-2xl"
-              >
+            {/* Buttons */}
+            <div className="flex flex-wrap gap-5 mt-10">
+
+              <button className="bg-cyan-500 hover:bg-cyan-400 hover:shadow-[0_0_30px_rgba(0,191,255,0.5)] transition-all duration-300 transition px-7 py-4 rounded-xl flex items-center gap-2 font-medium">
                 View Projects
-              </motion.a>
+
+                <ArrowRight size={18} />
+              </button>
 
               <a
-                href="/LavishVerma_resume.pdf"
-                download
-                className="border border-cyan-400/30 px-6 py-3 rounded-2xl hover:bg-cyan-400/10 transition flex items-center gap-2"
+                href="#contact"
+                className="border border-white/20 hover:border-cyan-400 hover:bg-cyan-400/10 transition px-7 py-4 rounded-xl"
               >
-                ⬇ Download Resume
+                Contact Me
               </a>
             </div>
-          </div>
 
-          {/* Floating Card */}
-          <motion.div
-            animate={{ y: [0, -10, 0] }}
-            transition={{ repeat: Infinity, duration: 5 }}
-            className="relative bg-gradient-to-br from-cyan-500/10 to-purple-500/10 border border-cyan-400/20 rounded-[2rem] p-6 sm:p-8 shadow-[0_0_60px_rgba(0,255,255,0.12)] backdrop-blur-xl"
-          >
-            <div className="space-y-6">
-              <div>
-                <p className="text-gray-400 text-sm">Current Focus</p>
-                <h3 className="text-2xl font-bold mt-2">
-                  AI Engineering & Full Stack Development
-                </h3>
-              </div>
+            {/* Socials */}
+            <div className="flex gap-5 mt-12">
+              <a
+                href="https://github.com/LavishV"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:border-cyan-400 hover:text-cyan-400 transition duration-300 transition"
+              >
+                <FaGithub />
+              </a>
 
-              <div className="grid grid-cols-2 gap-4">
-                <div className="bg-white/5 rounded-2xl p-5 border border-white/10">
-                  <h4 className="text-3xl font-bold">3+</h4>
-                  <p className="text-gray-400 mt-2 text-sm">
-                    Major Projects
-                  </p>
-                </div>
+              <a
+                href="https://www.linkedin.com/in/lavishverma01/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:border-cyan-400 hover:text-cyan-400 transition duration-300 transition"
+              >
+                <FaLinkedin />
+              </a>
 
-                <div className="bg-white/5 rounded-2xl p-5 border border-white/10">
-                  <h4 className="text-3xl font-bold">AI</h4>
-                  <p className="text-gray-400 mt-2 text-sm">
-                    Learning & Building
-                  </p>
-                </div>
-              </div>
-
-              <div className="bg-white/5 rounded-2xl p-5 border border-white/10">
-                <p className="text-gray-300 leading-relaxed">
-                  “Consistency and curiosity create opportunities faster than
-                  shortcuts ever can.”
-                </p>
-              </div>
+              <a
+                href="mailto:lavishverma018@gmail.com"
+                className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:border-cyan-400 hover:text-cyan-400 transition duration-300 transition"
+              >
+                <Mail />
+              </a>
             </div>
           </motion.div>
+
+          <div className="absolute right-0 top-0 w-1/2 h-full hidden md:block">
+
+            <div className="absolute inset-0 bg-gradient-to-l from-transparent via-black/20 to-black z-10 pointer-events-none" />
+
+            <Image
+              src="/lavish.png"
+              alt="Lavish Verma"
+              fill
+              priority
+              sizes="50vw"
+              className="object-cover object-center grayscale brightness-75 contrast-125 opacity-90"
+            />
+          </div>
+        </div>
+      </motion.section>
+      {/* ABOUT */}
+      <motion.section
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+        id="about"
+        className="relative z-20 border-t border-white/10 py-24 px-6 md:px-14"
+      >
+        <div className="max-w-7xl mx-auto">
+
+          <h2 className="text-4xl font-bold mb-12">
+            ABOUT <span className="text-cyan-400">ME</span>
+          </h2>
+
+          <div className="grid md:grid-cols-2 gap-10">
+
+            <div>
+              <p className="text-gray-400 leading-loose text-lg">
+                I'm Lavish Verma, a Computer Science engineering student
+                passionate about building scalable and impactful digital
+                solutions.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-2 gap-5">
+
+              <div className="bg-white/5 border border-white/10 rounded-2xl p-6 hover:border-cyan-400/40 hover:shadow-[0_0_30px_rgba(0,191,255,0.15)] transition-all duration-500">
+                <h3 className="text-cyan-400 mb-2">Current</h3>
+                <p>B.Tech CSE Student</p>
+              </div>
+
+              <div className="bg-white/5 border border-white/10 rounded-2xl p-6 hover:border-cyan-400/40 hover:shadow-[0_0_30px_rgba(0,191,255,0.15)] transition-all duration-500">
+                <h3 className="text-cyan-400 mb-2">Location</h3>
+                <p>India</p>
+              </div>
+
+              <div className="bg-white/5 border border-white/10 rounded-2xl p-6 hover:border-cyan-400/40 hover:shadow-[0_0_30px_rgba(0,191,255,0.15)] transition-all duration-500">
+                <h3 className="text-cyan-400 mb-2">Email</h3>
+                <p>lavishverma018@gmail.com</p>
+              </div>
+
+              <div className="bg-white/5 border border-white/10 rounded-2xl p-6 hover:border-cyan-400/40 hover:shadow-[0_0_30px_rgba(0,191,255,0.15)] transition-all duration-500">
+                <h3 className="text-cyan-400 mb-2">Availability</h3>
+                <p>Open to Opportunities</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </motion.section>
+      {/* SKILLS */}
+      <motion.section
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+        id="skills"
+        className="relative z-30 bg-black border-t border-white/10 py-24 px-6 md:px-14"
+      >
+        <div className="max-w-7xl mx-auto">
+
+          <h2 className="text-4xl font-bold mb-16">
+            SKILLS & <span className="text-cyan-400">TECH</span>
+          </h2>
+
+          <div className="grid md:grid-cols-4 gap-6">
+
+            {[
+              "Python",
+              "C++",
+              "JavaScript",
+              "React.js",
+              "Next.js",
+              "Node.js",
+              "Express.js",
+              "Django",
+              "Flask",
+              "PyTorch",
+              "Machine Learning",
+              "REST APIs",
+            ].map((skill, index) => (
+              <div
+                key={index}
+                className="bg-white/5 border border-white/10 rounded-2xl p-6 text-center hover:border-cyan-400/40 hover:shadow-[0_0_30px_rgba(0,191,255,0.15)] transition-all duration-500"
+              >
+                {skill}
+              </div>
+            ))}
+
+          </div>
         </div>
       </motion.section>
 
-      {/* About */}
-      <section
-        id="about"
-        className="px-6 md:px-16 py-24 border-t border-white/10"
-      >
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16">
-          <div>
-            <p className="text-gray-400 uppercase tracking-[0.25em] text-sm mb-4">
-              About Me
-            </p>
-
-            <h2 className="text-4xl md:text-5xl font-bold leading-tight">
-              A student developer with ambition beyond academics.
-            </h2>
-          </div>
-
-          <div>
-            <p className="text-gray-300 text-lg leading-relaxed mb-6">
-              I’m currently exploring AI engineering, machine learning systems,
-              and scalable backend development. My journey evolved from simple
-              curiosity into building production-style projects using Django,
-              React, Flask, PyTorch, and modern development tools.
-            </p>
-
-            <p className="text-gray-400 leading-relaxed">
-              Beyond coding, I enjoy deep thinking, productivity psychology,
-              communication, and meaningful storytelling through creative ideas
-              like “2AM Thoughts.”
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Skills */}
-      <section
-        id="skills"
-        className="px-6 md:px-16 py-24 border-t border-white/10"
-      >
-        <div className="max-w-6xl mx-auto">
-          <p className="text-gray-400 uppercase tracking-[0.25em] text-sm mb-4">
-            Skills & Technologies
-          </p>
-
-          <h2 className="text-4xl font-bold mb-14">
-            Tools I work with.
-          </h2>
-
-          <div className="flex flex-wrap gap-4">
-            {skills.map((skill) => (
-              <motion.div
-                whileHover={{ y: -4 }}
-                key={skill}
-                className="px-6 py-4 rounded-2xl bg-white/5 border border-cyan-400/10 hover:bg-cyan-400/10 hover:border-cyan-400/40 transition duration-300 backdrop-blur-md"
-              >
-                {skill}
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Projects */}
-      <section
+      {/* PROJECTS */}
+      <motion.section
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
         id="projects"
-        className="px-6 md:px-16 py-24 border-t border-white/10"
+        className="border-t border-white/10 py-24 px-6 md:px-14"
       >
-        <div className="max-w-6xl mx-auto">
-          <p className="text-gray-400 uppercase tracking-[0.25em] text-sm mb-4">
-            Featured Work
-          </p>
+        <div className="max-w-7xl mx-auto">
 
-          <h2 className="text-4xl font-bold mb-14">
-            Projects that define my learning journey.
+          <h2 className="text-4xl font-bold mb-16">
+            FEATURED PROJECTS
           </h2>
 
-          <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
-            {projects.map((project) => (
+          <div className="grid md:grid-cols-3 gap-8">
+
+            {projects.map((project, i) => (
               <motion.div
-                whileHover={{ y: -10 }}
-                key={project.title}
-                className="bg-gradient-to-br from-white/5 to-cyan-500/5 border border-cyan-400/10 rounded-[2rem] p-6 sm:p-8 transition duration-300 backdrop-blur-xl shadow-xl"
+                key={i}
+                whileHover={{ y: -8 }}
+                className="bg-white/5 border border-white/10 rounded-3xl p-8 backdrop-blur-xl hover:border-cyan-400/40 hover:shadow-[0_0_40px_rgba(0,191,255,0.15)] transition-all duration-500 "
               >
-                <div className="flex flex-wrap gap-2 mb-5">
-                  {project.tags.map((tag) => (
+                <h3 className="text-2xl font-bold mb-4">
+                  {project.title}
+                </h3>
+
+                <p className="text-gray-400 mb-6 leading-relaxed">
+                  {project.desc}
+                </p>
+
+                <div className="flex flex-wrap gap-2 mb-8">
+                  {project.tech.map((item) => (
                     <span
-                      key={tag}
-                      className="text-xs px-3 py-1 rounded-full bg-white/10 text-gray-300"
+                      key={item}
+                      className="text-xs px-3 py-1 rounded-full bg-cyan-400/15 text-cyan-300"
                     >
-                      {tag}
+                      {item}
                     </span>
                   ))}
                 </div>
 
-                <h3 className="text-2xl font-bold mb-4 leading-snug">
-                  {project.title}
-                </h3>
+                <div className="flex gap-4">
 
-                <p className="text-gray-400 leading-relaxed mb-8">
-                  {project.description}
-                </p>
+                  <button className="bg-cyan-500 hover:bg-cyan-400 hover:shadow-[0_0_30px_rgba(0,191,255,0.5)] transition-all duration-300 transition px-5 py-3 rounded-xl text-sm">
+                    Live Demo
+                  </button>
 
-                <button className="text-sm border border-white/20 px-5 py-3 rounded-xl hover:bg-white hover:text-black transition">
-                  Explore Project
-                </button>
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="border border-white/20 px-5 py-3 rounded-xl text-sm hover:border-cyan-400 hover:bg-cyan-400/10 transition flex items-center gap-2"
+                  >
+                    GitHub
+                    <FaGithub size={16} />
+                  </a>
+                </div>
               </motion.div>
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
-      {/* Contact */}
-      <section
+
+
+      <motion.section
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
         id="contact"
-        className="px-6 md:px-16 py-24 border-t border-white/10"
+        className="relative z-[60] border-t border-white/10 py-24 px-6 md:px-14"
       >
         <div className="max-w-4xl mx-auto text-center">
-          <p className="text-gray-400 uppercase tracking-[0.25em] text-sm mb-4">
-            Let’s Connect
-          </p>
 
-          <h2 className="text-4xl md:text-5xl font-black mb-6">
-            Want to build something meaningful together?
+          <h2 className="text-4xl font-bold mb-6">
+            CONTACT <span className="text-cyan-400">ME</span>
           </h2>
 
-          <p className="text-gray-400 text-lg leading-relaxed mb-10">
-            Whether it’s AI, development, collaboration, or creative ideas —
-            I’m always open to learning and connecting with passionate people.
+          <p className="text-gray-400 mb-10 text-lg">
+            Open to internships, collaborations, AI/ML projects,
+            and exciting opportunities.
           </p>
 
-          <div className="flex justify-center gap-5 flex-wrap">
+          <div className="flex justify-center gap-6 flex-wrap">
+
+            <a
+              href="mailto:lavishverma018@gmail.com"
+              className="relative z-[70] bg-cyan-500 hover:bg-cyan-400 hover:shadow-[0_0_30px_rgba(0,191,255,0.5)] transition-all duration-300 px-8 py-4 rounded-xl"
+            >
+              Email Me
+            </a>
+
             <a
               href="https://github.com/LavishV"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-white text-black px-8 py-4 rounded-2xl font-semibold hover:scale-105 transition"
+              className="relative z-[70] border border-white/20 hover:border-cyan-400 hover:bg-cyan-400/10 transition px-8 py-4 rounded-xl"
             >
               GitHub
             </a>
 
-            <a
-              href="https://www.linkedin.com/in/lavishverma01/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="border border-cyan-400/20 px-8 py-4 rounded-2xl hover:bg-cyan-400/10 transition"
-            >
-              LinkedIn
-            </a>
-
-            <a
-              href="mailto:lavishverma018@gmail.com"
-              className="border border-cyan-400/20 px-8 py-4 rounded-2xl hover:bg-cyan-400/10 transition"
-            >
-              Email
-            </a>
           </div>
         </div>
-      </section>
+      </motion.section>
 
-      {/* Footer */}
-      <footer className="px-6 py-10 border-t border-white/10 text-center text-gray-500 text-sm">
-        <div className="flex items-center justify-center gap-2">
-          ✨ Designed & built by Lavish — AI Developer Portfolio
-        </div>
+
+
+      {/* FOOTER */}
+      <footer className="relative z-30 bg-black border-t border-white/10 py-10 text-center text-gray-500">
+        <p>
+          © 2026 Lavish Verma. All rights reserved.
+        </p>
+
+        <p className="mt-2 text-sm text-gray-600">
+          Built with Next.js, TailwindCSS & Framer Motion
+        </p>
       </footer>
-    </div>
+    </main >
   );
 }
