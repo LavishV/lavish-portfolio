@@ -141,7 +141,7 @@ export default function LavishPortfolio() {
 
 
             <p className="mt-8 text-gray-400 max-w-xl text-lg">
-              I build scalable web applications and intelligent systems
+              I build scalable web applications and intelligent systemssw
               that solve real-world problems.
             </p>
 
